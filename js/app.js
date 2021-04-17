@@ -38,7 +38,7 @@
                     storeItems.forEach(item => { //for each item we show in block display
                         item.style.display = `block`
                     })
-                } else if (item.classList.contains(filter)) {
+                } else if (item.classList.contains(filter)) { //search for items based on click and display them
                     item.style.display = `block`
                 } else {
                     item.style.display = `none`

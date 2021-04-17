@@ -5,8 +5,8 @@
     const storeItems = document.querySelectorAll('.store-item')
 
     filterBar.addEventListener('keyup', (e) => {
-
-        const searchTerm = e.target.value.toLowerCase().trim()
+        e.preventDefault()
+        const searchTerm = filterBar.value.toLowerCase().trim()
 
         storeItems.forEach((item) => {
             if (item.textContent.includes(searchTerm)) {
@@ -15,130 +15,39 @@
                 item.style.display = `none`
             }
         })
+    })
+})();
+
+(function () {
+    const storeItems = document.querySelectorAll('.store-item')
+    const buttons = document.querySelectorAll('.btn')
+
+    //for each button
+    buttons.forEach(btn => {
+        //listen for an event of click
+        btn.addEventListener('click', e => {
+            e.preventDefault()
+
+            //this grabs the html data ie cakes, sweets etc
+            const filter = btn.dataset.filter
+            console.log(filter);
+
+            //for each store item 
+            storeItems.forEach(item => { //look at the item 
+                if (filter == 'all') { //if the filter matches all
+                    storeItems.forEach(item => { //for each item we show in block display
+                        item.style.display = `block`
+                    })
+                } else if (item.classList.contains(filter)) {
+                    item.style.display = `block`
+                } else {
+                    item.style.display = `none`
+                }
+
+            })
+
+        })
 
     })
-})()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//answers
-
-
-
-    // //wire up filter search box
-    // (function () {
-
-    //     const searchBox = document.querySelector('#search-item')
-    //     const storeItems = document.querySelectorAll('.store-item')
-
-    //     searchBox.addEventListener('keyup', (e) => {
-
-    //         const searchFilter = e.target.value.toLowerCase().trim()
-    //         //display only items that contain filter input
-
-    //         storeItems.forEach((item) => {
-    //             if (item.textContent.includes(searchFilter)) {
-    //                 item.style.display = 'block'
-    //             } else {
-    //                 item.style.display = 'none'
-    //             }
-    //         })
-    //     })
-
-    // })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Work to get the filter buttons working
-// (function(){
-
-//     // refactor to get rid of DRY code
-//     const buttons = document.querySelectorAll('.btn')
-//     const storeItems = document.querySelectorAll('.store-item')
-
-//     buttons.forEach((button)=> {
-//         button.addEventListener('click', (e) => {
-//             e.preventDefault()
-//             console.log(e.target.dataset);
-//             const filter = e.target.dataset.filter
-
-//             storeItems.forEach((item)=> {
-//                 if (filter === 'all'){
-//                     item.style.display = 'block'
-//                 } else {
-//                     if (item.classList.contains(filter)){
-//                         item.style.display = 'block'
-//                     } else {
-//                         item.style.display = 'none'
-//                     }
-//                 }
-//             })
-//         })
-//     })
-
-// })();
+})();
 
